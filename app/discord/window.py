@@ -31,6 +31,9 @@ def _window_from_handle(hwnd) -> DiscordWindow | None:
     if width <= 0 or height <= 0:
         return None
 
+    if left < -1000 or top < -1000:
+        return None
+
     _, pid = win32process.GetWindowThreadProcessId(hwnd)
 
     try:
@@ -39,6 +42,9 @@ def _window_from_handle(hwnd) -> DiscordWindow | None:
         return None
 
     if process_name.lower() != "discord.exe":
+        return None
+
+    if not title.endswith(" - Discord"):
         return None
 
     return DiscordWindow(
@@ -71,4 +77,4 @@ def find_discord_window() -> DiscordWindow | None:
     if not found_windows:
         return None
 
-    return found_windows[0]
+    return max(found_windows, key=lambda window: window.width * window.height)
