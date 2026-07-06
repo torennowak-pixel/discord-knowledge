@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+
+data/screenshots/
+data/logs/
+data/database.db
+
+dist/
+build/
+
+config/settings.local.json

@@ -1,0 +1,8 @@
+customtkinter
+mss
+pillow
+pywinauto
+loguru
+pydantic
+rapidocr-onnxruntime
+ollama
