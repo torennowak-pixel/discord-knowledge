@@ -2,6 +2,8 @@ from pathlib import Path
 
 from rapidocr_onnxruntime import RapidOCR
 
+from app.ocr.cleaner import clean_ocr_lines
+
 
 def main():
     screenshots_dir = Path("data/screenshots")
@@ -25,8 +27,10 @@ def main():
     print("Erkannter Text:")
     print("=" * 80)
 
-    for line in result:
-        text = line[1]
+    raw_lines = [line[1] for line in result]
+    cleaned_lines = clean_ocr_lines(raw_lines)
+
+    for text in cleaned_lines:
         print(text)
 
 
