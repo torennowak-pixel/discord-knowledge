@@ -32,11 +32,11 @@ def capture_window(
     file_path = output_path / filename
 
     region = {
-        "left": window.left,
-        "top": window.top,
-        "width": window.width,
-        "height": window.height,
-    }
+        "left": window.left + 520,
+        "top": window.top + 110,
+        "width": window.width - 520,
+        "height": window.height - 180,
+}
 
     with mss.mss() as sct:
         screenshot = sct.grab(region)
